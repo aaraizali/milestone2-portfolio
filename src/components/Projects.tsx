@@ -1,5 +1,7 @@
-'use client'
-import { headerItems, projects } from "@/constants/constant";  
+'use client';
+
+import { headerItems } from "@/constants/constant";
+import { projects } from "@/models/project"; // Import the `projects` object
 import Image from "next/image";
 
 const Projects: React.FC = () => {
@@ -12,7 +14,7 @@ const Projects: React.FC = () => {
             <div className="flex break-words flex-wrap text-center justify-center items-center">
                 {Object.keys(projects).map((project, index) => (
                     <Image 
-                        src={projects[project as keyof typeof projects].image} 
+                        src={projects[project].image} 
                         alt={project}
                         width={300}
                         height={300}
