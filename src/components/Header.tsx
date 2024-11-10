@@ -6,7 +6,7 @@ import { NavItems } from "@/models/Header";
 import { Link as ScrollLink } from 'react-scroll';
 
 interface IHeaderProps {
-    isDesktop: boolean
+    isDesktop: boolean;
 }
 
 const Header: React.FC<IHeaderProps> = ({ isDesktop }) => {
@@ -16,12 +16,15 @@ const Header: React.FC<IHeaderProps> = ({ isDesktop }) => {
         <header className="p-6 justify-between fixed top-0 z-10 bg-white w-full md:flex">
             <div className="flex justify-between">
                 <h2 className="text-2xl font-bold">{userInfo.name}</h2>
-                <BiMenu 
-                    size={30} 
-                    className="md:hidden" 
-                    onClick={() => showNavItem(prevState => !prevState)} />
+                {isDesktop ? null : (
+                    <BiMenu 
+                        size={30} 
+                        className="md:hidden" 
+                        onClick={() => showNavItem(prevState => !prevState)} 
+                    />
+                )}
             </div>
-            <div className={`mr-8 md:space-x-6 md:block mt-3 md:mt-0 ${ navItem ? 'block' : 'hidden'}`}>
+            <div className={`mr-8 md:space-x-6 md:block mt-3 md:mt-0 ${navItem ? 'block' : 'hidden'}`}>
                 {Object.keys(headerItems).map(item => (
                     <ScrollLink 
                         to={headerItems[item as keyof NavItems].page} 
